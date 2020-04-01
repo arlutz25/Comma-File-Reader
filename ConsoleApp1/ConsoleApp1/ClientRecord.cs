@@ -21,13 +21,21 @@ namespace DataRecordInfo
                 || DateTime.Compare(DateTime.Today, DateOfBirth.AddYears(18)) < 0) ? "Rejected" : "Accepted";
         }
 
-        public string FirstName;
-        public string LastName;
-        public DateTime DateOfBirth;
-        public string PlanType;
-        public DateTime EffectiveDate;
+        public string GetFirstName()            { return FirstName; }
+        public string GetLastName()             { return LastName; }
+        public string GetDOB()                  { return DateOfBirth.ToShortDateString(); }
+        public string GetPlanType()             { return PlanType; }
+        public string GetEffectiveDate()        { return EffectiveDate.ToShortDateString(); }
+        public bool   IsDOBValid()              { return DOBValid; }
+        public bool   IsEffectiveDateValid()    { return EffectiveDateValid; }
 
-        public bool DOBValid;
-        public bool EffectiveDateValid;
+        private string FirstName;
+        private string LastName;
+        private DateTime DateOfBirth;
+        private string PlanType;
+        private DateTime EffectiveDate;
+
+        private bool DOBValid;
+        private bool EffectiveDateValid;
     }
 }

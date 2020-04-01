@@ -33,24 +33,29 @@ namespace DataRecordInfo
 
                     Console.WriteLine("{0}, {1}, {2}, {3}, {4}, {5}",
                         status,
-                        currentClientRecord.FirstName,
-                        currentClientRecord.LastName,
-                        currentClientRecord.DateOfBirth.ToShortDateString(),
-                        currentClientRecord.PlanType,
-                        currentClientRecord.EffectiveDate.ToShortDateString());
+                        currentClientRecord.GetFirstName(),
+                        currentClientRecord.GetLastName(),
+                        currentClientRecord.GetDOB(),
+                        currentClientRecord.GetPlanType(),
+                        currentClientRecord.GetEffectiveDate());
                 }
             }
         }
 
         bool IsClientRecordValid(ClientRecord record)
         {
-            bool firstNameValid = !string.IsNullOrEmpty(record.FirstName);
-            bool lastNameValid = !string.IsNullOrEmpty(record.LastName);
-            bool planTypeValid = record.PlanType == "HSA"
-                || record.PlanType == "HRA"
-                || record.PlanType == "FSA";
+            bool firstNameValid = !string.IsNullOrEmpty(record.GetFirstName());
+            bool lastNameValid = !string.IsNullOrEmpty(record.GetLastName());
+            string planType = record.GetPlanType();
+            bool planTypeValid = planType == "HSA"
+                || planType == "HRA"
+                || planType == "FSA";
 
-            return firstNameValid && lastNameValid && record.DOBValid && planTypeValid && record.EffectiveDateValid;
+            return firstNameValid 
+                && lastNameValid 
+                && record.IsDOBValid() 
+                && planTypeValid 
+                && record.IsEffectiveDateValid();
         }
     }
 }
